@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News Feed</title>
+    <style>
+        .news {
+            width: 100px;
+            height: 100px;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI1MCIgeT0iMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPkRBSUxZPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPk5FV1M8L3RleHQ+CjxyZWN0IHg9IjEwIiB5PSI2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjMiIGZpbGw9IiMwMDAiLz4KPHJlY3QgeD0iMTAiIHk9IjcwIiB3aWR0aD0iNjAiIGhlaWdodD0iMiIgZmlsbD0iIzAwMCIvPgo8cmVjdCB4PSIxMCIgeT0iNzgiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyIiBmaWxsPSIjMDAwIi8+CjxyZWN0IHg9IjEwIiB5PSI4NiIgd2lkdGg9IjUwIiBoZWlnaHQ9IjIiIGZpbGw9IiMwMDAiLz4KPC9zdmc+);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation-name: bouncey;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes bouncey {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+            40% {transform: translateY(-20px);} 
+            60% {transform: translateY(-15px);} 
+            60% {transform: translateY(-10px);} 
+            80% {transform: translateY(-5px);} 
+        }
+
+        .zoom {
+            padding: 5px;
+            background-color: #66a2da;
+            transition: transform .2s;
+        }
+
+        .zoom:hover {
+            transform: scale(1.3);
+        }
+
+        .newsFont{
+            font-size: larger;
+            padding-top: 5px;
+        }
+
+        .newsfeed {
+            animation-duration: 10s;
+            animation-delay: 2s;
+            animation-iteration-count: infinite;
+            animation-name: slidein;
+        }
+
+        @keyframes slidein {
+            from {
+                margin-left: 100%;
+                width: 100%;
+            }
+            to {
+                margin-left: 0%;
+                width: 100%;
+            }
+        }
+        .container {
+            display: grid;
+            grid-template-rows: repeat(18, 50px);
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 2px;
+        }
+
+        header {
+            grid-column: 1/5;
+            grid-row: 1/3;
+            background-color: #66a2da;
+            text-align: center;
+            font-size: x-large;
+            font-family: "Comic Sans MS";
+            font-weight: bold;
+        }
+
+        .breaking_news {
+            grid-column: 1/5;
+            grid-row: 3/4;
+            background-color: #369bf5;
+            font-family: "Comic Sans MS";
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .infoBox {
+            grid-column: 1/2;
+            grid-row: 4/12;
+            background-color: #a1bfd9;
+            padding-top: 5px;
+            padding-left: 5px;
+            font-family: "Comic Sans MS";
+        }
+
+        .infoBox img {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            border: 5px solid #0a3459;
+            margin: 6px;
+        }
+
+        aside {
+            display: flex;
+            flex-wrap: wrap;
+            grid-column: 2/5;
+            grid-row: 4/12;
+            background-color: #8eabe1;
+        }
+
+        article {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .news_section {
+            grid-column: 1/5;
+            grid-row: 12/13;
+            background-color: #369bf5;
+            font-family: "Comic Sans MS";
+            font-weight: bold;
+        }
+
+        .main_content {
+            grid-column: 1/5;
+            grid-row: 4/7;
+            font-size: small;
+            font-family: "Comic Sans MS";
+        }
+
+        .content_area {
+            grid-column: 1/5;
+            grid-row: 7/18;
+        }
+
+        footer {
+            grid-row: 18/19;
+        }
+
+        @media screen and (max-width: 800px) {
+            .news, aside, article, footer {
+                grid-column: 1/5;
+                grid-row: 3/4;
+            }
+        }
+        body {
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .news-item {
+            background-color: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .news-item h3 {
+            margin-top: 0;
+            color: #0a3459;
+        }
+
+        .news-item p {
+            color: #333;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="news"></div>
+        
+        <header>
+            <h1>Daily News Feed</h1>
+        </header>
+
+        <div class="breaking_news newsfeed">
+            <div class="newsFont">🔴 BREAKING: Latest news updates rolling in...</div>
+        </div>
+
+        <div class="infoBox">
+            <h3>Info Box</h3>
+            <div class="zoom">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNjZhMmRhIiBzdHJva2U9IiMwYTM0NTkiIHN0cm9rZS13aWR0aD0iNSIgcng9IjE1Ii8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+SW1hZ2UgMTwvdGV4dD4KPC9zdmc+" alt="Info Image 1">
+            </div>
+            <div class="zoom">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjOGVhYmUxIiBzdHJva2U9IiMwYTM0NTkiIHN0cm9rZS13aWR0aD0iNSIgcng9IjE1Ii8+Cjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+SW1hZ2UgMjwvdGV4dD4KPC9zdmc+" alt="Info Image 2">
+            </div>
+        </div>
+
+        <aside>
+            <article>
+                <div class="news-item">
+                    <h3>Technology News</h3>
+                    <p>Latest developments in artificial intelligence and cybersecurity making headlines today.</p>
+                </div>
+            </article>
+            <article>
+                <div class="news-item">
+                    <h3>World News</h3>
+                    <p>International updates from across the globe covering politics and current events.</p>
+                </div>
+            </article>
+            <article>
+                <div class="news-item">
+                    <h3>Health & Science</h3>
+                    <p>Medical breakthroughs and scientific discoveries that are changing our world.</p>
+                </div>
+            </article>
+            <article>
+                <div class="news-item">
+                    <h3>Sports Update</h3>
+                    <p>Latest scores, highlights, and analysis from the world of sports.</p>
+                </div>
+            </article>
+        </aside>
+
+        <div class="news_section">
+            <div style="padding: 10px;">
+                <strong>News Section</strong> - Stay informed with our comprehensive coverage
+            </div>
+        </div>
+
+        <div class="content_area">
+            <div style="padding: 20px; background-color: white; margin: 10px; border-radius: 5px;">
+                <h2>Main Content Area</h2>
+                <p>Welcome to our daily news feed. Here you'll find the most important stories of the day, carefully curated to keep you informed about what's happening in your world and beyond.</p>
+                <p>Our team of dedicated journalists works around the clock to bring you accurate, timely, and relevant news coverage across all major categories including politics, technology, health, sports, and entertainment.</p>
+                <p>Stay connected with us throughout the day for breaking news alerts and in-depth analysis of the stories that matter most to you.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div style="padding: 10px; text-align: center; font-family: 'Comic Sans MS'; background-color: #66a2da;">
+                © 2025 Daily News Feed - All Rights Reserved
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
